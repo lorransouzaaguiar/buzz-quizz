@@ -1,31 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-.topo{
-    background-color: var(--red1);
-    width: 100%;
-    height: 69px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
 
-}
 h1{
     color: var(--white1);
     
 }
-.container{
+.container-sucesso{
     
 
-    display: flex;
-    align-items: center;
-    
     width: 500px;
-    flex-direction: column;
-    margin: 0 auto;
-    height: 100vh;
+    
 }
-
 h2{
     margin-top: 71px;
     margin-bottom: 45px;
@@ -70,8 +55,9 @@ h2{
     
 }
 @media (max-width: 500px){
-    .container{
+    .container-sucesso{
         width: 100%;
+        padding: 0 20px;
     }
 
 

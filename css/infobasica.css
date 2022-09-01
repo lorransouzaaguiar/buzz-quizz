@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+body{
+   background-color: var(--white2);
+}
+.container-infobasica{
+    width: 600px;
+} 
+
+.container h2{
+    font-size: 23px;
+    font-weight: 700;
+    margin-top: 71px;
+    margin-bottom: 27px;
+}
+.criar-quizz{
+    background-color: var(--white1);
+    width: 600px;
+    height: 256px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 85px;
+    padding: 20px 16px;
+}
+.criar-quizz input{
+    color: var(--gray5);
+    font-style: italic;
+    border-radius: 3px;
+    width: 100%;
+    height: 46px;
+    border: 1px solid var(--gray4);
+    margin-bottom: 9px;
+    
+}
+.criar-quizz input::placeholder{
+    color: var(--gray5);
+}
+.prosseguir{
+    background-color: var(--red1);
+    color: var(--white2);
+    width: 370px;
+    height: 54px;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 21px;
+    font-weight: 400;
+}
+@media (max-width: 600px){
+   
+    .container-infobasica{
+        width: 100%;
+    }
+    .criar-quizz{
+        width:100%;
+    }
+    .criar-quizz input{
+        width: 100%;
+    }
+    .prosseguir{
+        width: 325px;
+      
+       
+    }
+  
+
+}

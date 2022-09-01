@@ -7,6 +7,8 @@
     --gray1: #B9B9B9;
     --gray2: #484848;
     --gray3: #818181;
+    --gray4: #D1D1D1;
+    --gray5: #BABABA;
     --green1: #009C22;
 }
 *{
@@ -17,4 +19,24 @@
 
 body{
     font-family: 'Roboto', sans-serif;
+}
+.topo{
+    background-color: var(--red1);
+    width: 100%;
+    height: 69px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
+}
+.container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+    height: 100vh;
+    background-color:var(--white2);
+    
+
 }
