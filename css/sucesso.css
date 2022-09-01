@@ -1,17 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-
-h1{
-    color: var(--white1);
-    
-}
 .container-sucesso{
     
 
     width: 500px;
     
 }
-h2{
+.container-sucesso h2{
     margin-top: 71px;
     margin-bottom: 45px;
 
