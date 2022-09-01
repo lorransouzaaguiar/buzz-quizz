@@ -1,0 +1,78 @@
+.container-niveis > h2{
+    margin-top: 63px;
+    margin-bottom: 36px;
+
+}
+.container-niveis{
+    margin-bottom: 50px;
+    height: 100%;
+}
+.criar-nivel{
+    background-color: var(--white1);
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 16px;
+}
+.criar-nivel > h3{
+    margin-bottom: 12px;
+}
+
+.criar-nivel input{
+    
+        color: var(--gray5);
+        font-style: italic;
+        border-radius: 3px;
+        width: 100%;
+        height: 46px;
+        border: 1px solid var(--gray4);
+        margin-bottom: 14px;
+    
+    
+}
+.criar-nivel input::placeholder{
+    color: var(--gray5);
+}
+.novo-nivel{
+    background-color: var(--white1);
+    height: 74px;
+    width: 600px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+}
+.finalizar{
+    background-color: var(--red1);
+    color: var(--white2);
+    width: 325px;
+    height: 54px;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 21px;
+    font-weight: 400;
+    margin-top: 75px;
+}
+@media (max-width:600px){
+    .criar-nivel{
+        width: 100%;
+    }
+    .novo-nivel{
+        width: 100%;
+    }
+    .criar-nivel input:nth-child(5){
+        height: 340px;
+        position: relative;
+    }
+
+    .criar-nivel input:nth-child(5)::placeholder{
+        color: var(--gray5);
+        position: absolute;
+        top: 10px;
+
+        
+
+    }
+    
+}
