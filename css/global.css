@@ -1,11 +1,20 @@
 :root {
-    --white1: '#FFFFFF';
-    --white2: '#FAFAFA';
-    --white3: '#FFF5F4';
-    --red1: '#EC362D';
-    --red2: '#FF0B0B';
-    --gray1: '#B9B9B9';
-    --gray2: '#484848';
-    --gray3: '#818181';
-    --green1: '#009C22';
+    --white1: #FFFFFF;
+    --white2: #FAFAFA;
+    --white3: #FFF5F4;
+    --red1: #EC362D;
+    --red2: #FF0B0B;
+    --gray1: #B9B9B9;
+    --gray2: #484848;
+    --gray3: #818181;
+    --green1: #009C22;
+}
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
 }
