@@ -85,31 +85,44 @@ function validarNiveisQuizz(){
 }
 validarNiveisQuizz()
 
-/* /* function abrirNovoNivel(){
+ function abrirNovoNivel(){
 
-    let botaoNovoNivel = document.querySelector('.novo-nivel img')
-
-    botaoNovoNivel.onclick = () => {
-        
-        let novoNivel = document.querySelector('.novo-nivel')
-        console.log(novoNivel)
-        /* let imgNovoNivel = document.querySelector('.novo-nivel img') */
-       /*  let criarNivel = document.querySelector('.criar-nivel')
-        console.log(criarNivel) */
-        /* const element = document.getElementById("criar-nivel") */
-        /* const element2 = document.getElementById("novo-nivel") */
  
+     let botaoNovoNivel = Object.values(document.querySelectorAll('.novo-nivel img'))
+    console.log(botaoNovoNivel)
+    
+    botaoNovoNivel.forEach( (botao,index) => {
 
-         /* novoNivel.classList.toggle('criar-nivel')  */
-         /* imgNovoNivel.classList.toggle('esconder-img') */
+        botao.onclick = () => {
+        console.log(index)
+            let removerEscondido = Object.values(document.querySelectorAll('.escondido'))[index]
+            console.log(removerEscondido)
 
-        /* document.getElementById('criar-nivel').addEventListener() */
+            
+    
+            removerEscondido.classList.remove('escondido')
+    
+            let removerNovoNivel = Object.values(document.querySelectorAll('.novo-nivel'))[index]
+            
+            removerNovoNivel.classList.add('escondido')
+    
+        } 
 
-       /*  document.getElementById('novo-nivel').remove() */
+    })
+
+   /*  botaoNovoNivel.onclick = () => {
         
-       /* element2.replaceChild(element, element2); */
+        let removerEscondido = document.querySelector('.escondido')
+        
 
+        removerEscondido.classList.remove('escondido')
 
-/*     }
+        let removerNovoNivel = document.querySelector('.novo-nivel')
+        
+        removerNovoNivel.classList.add('escondido')
+
+    } 
+     */
 }
- */
+abrirNovoNivel()
+ 
