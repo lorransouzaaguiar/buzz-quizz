@@ -1,128 +1,164 @@
-function validarNiveisQuizz(){
+export const QuizzLevelPage = (numberOfLevels, formQuestions) => {
 
-    const todosInputsNivelValidos = []
-    
-    let botaoNivel = document.querySelector('.finalizar')
+    const render = () => {
+        const page = document.createElement('div')
+        page.classList.add('container')
+        page.classList.add('container-niveis')
 
-    botaoNivel.onclick = () => {
+        const niveis = []
 
-        let inputsNivel = document.querySelector('.criar-nivel')
-        
-        let tituloNivel = inputsNivel.children[1].value
-
-        if(tituloNivel.length >= 10){
-
-            todosInputsNivelValidos.push(true)
-
-        }else{
-            todosInputsNivelValidos.push(false)
+        for (let i = 0; i < numberOfLevels; i++) {
+            const nivel = `
+                <div class="novo-nivel" id="novo-nivel">
+                    <h3>Nível ${i + 1}</h3>
+                    <img  src="./imagens/Vector.svg">
+                </div> 
+                <div class="criar-nivel escondido" id="criar-nivel" >
+                    <h3>Nível 2</h3>
+                    <input placeholder="    Título do nível">  </input>
+                    <input placeholder="    % acerto mínimo" id = "acerto-minimo" >  </input>
+                    <input placeholder="    URL da imagem de nível">  </input>
+                    <input placeholder="    Descrição do nível"> </input>
+                </div>
+            `
+            niveis.push(nivel)
         }
 
-        let acertoMinimo = inputsNivel.children[2].value
+        page.innerHTML = `
+            <h2>Agora, decida os níveis</h2>
+            <div class="criar-nivel" id="criar-nivel">
+                <h3>Nível 1</h3>
+                <input placeholder="    Título do nível">  </input>
+                <input placeholder="    % acerto mínimo" id = "acerto-minimo">  </input>
+                <input placeholder="    URL da imagem de nível">  </input>
+                <input placeholder="    Descrição do nível"> </input>
+            </div>
+            ${niveis.map(nivel => nivel)}
+            <button class="finalizar">Finalizar Quizz</button>
+        `
+        return page
+    }
 
-        if(parseInt(acertoMinimo) >= 0 && parseInt(acertoMinimo) <= 100 ){
+    const formLevelQuizz = () => {
+        let botaoNivel = document.querySelector('.finalizar')
 
-            todosInputsNivelValidos.push(true)
+        botaoNivel.onclick = () => {
+            const todosInputsNivelValidos = []
 
-        }else{
+            const { respostaValidas, dados } = validarNiveisQuizz(todosInputsNivelValidos)
 
-            todosInputsNivelValidos.push(false)
+            console.log(formQuestions)
+            console.log(dados)
+            if (respostaValidas) {
+                console.log('validado')
 
+            } else {
+                alert('Preencha os dados corretamente!')
+            }
+            todosInputsNivelValidos.length = 0
         }
+    }
 
-        let urlImagemNivel = inputsNivel.children[3].value
-
-        if(urlImagemNivel.match('https?:\/\/.*\.(?:png|jpg)')){
-
-            todosInputsNivelValidos.push(true)
-        }else{
-            
-            todosInputsNivelValidos.push(false)
-            
-        }
-
-        let descriçaoNivel = inputsNivel.children[4].value
-
-        if(descriçaoNivel.length >= 30){
-
-            todosInputsNivelValidos.push(true)
-
-        }else{
-
-            todosInputsNivelValidos.push(false)
-
-        }
-
-        let verificarPorcentagem = Object.values(document.querySelectorAll('#acerto-minimo'))
-
-        const acerto =verificarPorcentagem.filter( (input) => input.value == 0)
-
-        if(acerto.length !== 0){
-
-            console.log('VALIDADO')
-
-        }else{
-
-            console.log('deu ruim')
-        }
-
-        let respostaValidas = todosInputsNivelValidos.every((resposta)=> resposta)
-
-        if(respostaValidas){
-            console.log('validado')
-            
-        }else{
-            alert('Preencha os dados corretamente!')
-        }
-        
-        todosInputsNivelValidos.length = 0
+    return { render, formLevelQuizz }
+}
 
 
+export function validarNiveisQuizz(todosInputsNivelValidos) {
+    let inputsNivel = document.querySelector('.criar-nivel')
+    console.log(inputsNivel)
 
+    let tituloNivel = inputsNivel.children[1].value
+
+    if (tituloNivel.length >= 10) {
+
+        todosInputsNivelValidos.push(true)
+
+    } else {
+        todosInputsNivelValidos.push(false)
+    }
+
+    let acertoMinimo = inputsNivel.children[2].value
+
+    if (parseInt(acertoMinimo) >= 0 && parseInt(acertoMinimo) <= 100) {
+
+        todosInputsNivelValidos.push(true)
+
+    } else {
+
+        todosInputsNivelValidos.push(false)
 
     }
-    
+
+    let urlImagemNivel = inputsNivel.children[3].value
+
+    if (urlImagemNivel.match('https?:\/\/.*\.(?:png|jpg)')) {
+
+        todosInputsNivelValidos.push(true)
+    } else {
+
+        todosInputsNivelValidos.push(false)
+
+    }
+
+    let descriçaoNivel = inputsNivel.children[4].value
+
+    if (descriçaoNivel.length >= 30) {
+
+        todosInputsNivelValidos.push(true)
+
+    } else {
+
+        todosInputsNivelValidos.push(false)
+
+    }
+
+    let verificarPorcentagem = Object.values(document.querySelectorAll('#acerto-minimo'))
+
+    const acerto = verificarPorcentagem.filter((input) => input.value == 0)
+
+    if (acerto.length !== 0) {
+
+        console.log('VALIDADO')
+
+    } else {
+
+        console.log('deu ruim')
+    }
+
+    let respostaValidas = todosInputsNivelValidos.every((resposta) => resposta)
+
+    return {
+        respostaValidas, dados: {
+            tituloNivel,
+            acertoMinimo,
+            urlImagemNivel,
+            descriçaoNivel,
+            verificarPorcentagem
+        }
+    }
 }
-validarNiveisQuizz()
 
- function abrirNovoNivel(){
+export function abrirNovoNivel() {
 
- 
-     let botaoNovoNivel = Object.values(document.querySelectorAll('.novo-nivel img'))
+    let botaoNovoNivel = Object.values(document.querySelectorAll('.novo-nivel img'))
     console.log(botaoNovoNivel)
-    
-    botaoNovoNivel.forEach( (botao,index) => {
+
+    botaoNovoNivel.forEach((botao, index) => {
 
         botao.onclick = () => {
-        console.log(index)
+            console.log(index)
             let removerEscondido = Object.values(document.querySelectorAll('.escondido'))[index]
             console.log(removerEscondido)
 
-            
-    
+
+
             removerEscondido.classList.remove('escondido')
-    
+
             let removerNovoNivel = Object.values(document.querySelectorAll('.novo-nivel'))[index]
-            
+
             removerNovoNivel.classList.add('escondido')
-    
-        } 
+
+        }
 
     })
-
-   /*  botaoNovoNivel.onclick = () => {
-        
-        let removerEscondido = document.querySelector('.escondido')
-        
-
-        removerEscondido.classList.remove('escondido')
-
-        let removerNovoNivel = document.querySelector('.novo-nivel')
-        
-        removerNovoNivel.classList.add('escondido')
-
-    } 
-     */
 }
-abrirNovoNivel()
- 
