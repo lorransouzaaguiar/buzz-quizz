@@ -1,0 +1,131 @@
+.college-image {
+    width: 100%;
+    max-height: 227px;
+    margin-bottom: 42px;
+    object-fit: cover;
+}
+
+.container-quizz {
+    width: 760px;
+    height: 100%;
+    margin-bottom: 85px;
+}
+
+.wrapper-quizz {
+    width: 100%;
+    max-height: 676px;
+    background-color: var(--white1);
+    margin-bottom: 46px;
+}
+
+.wrapper-quizz>h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 137px;
+    color: var(--white1);
+    font-weight: 700;
+    font-size: 1.4em;
+    margin-bottom: 16px;
+}
+
+.quizz-title {
+    background-color: #434CA0;
+    padding: 0 18px;
+}
+
+.correct-quizz-title {
+    color: var(--green1);
+}
+
+.wrong-quizz-title {
+    color: var(--red3);
+}
+
+.wrong-quizz-image {
+    opacity: 0.3;
+
+}
+
+.group-image {
+    display: grid;
+    padding: 28px 36px 36px 36px;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    background-color: var(--white1);
+}
+
+.group-image img {
+    max-width: 329px;
+}
+
+.group-image h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 13px 0 22px 0;
+}
+
+.info-about-quizz {
+    display: flex;
+    padding: 28px 36px 36px 36px;
+}
+
+.info-about-quizz img {
+    max-width: 364px;
+    margin-right: 21px;
+
+}
+
+.info-about-quizz p {
+    font-weight: 700;
+    font-size: 1.25em;
+    line-height: 1.56em;
+}
+
+.quizz-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 760px) {
+    .college-image {
+        height: 375px;
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    .container-quizz {
+        width: 100%;
+    }
+
+    .wrapper-quizz>h2 {
+        text-align: center;
+    }
+
+    .group-image img {
+        width: 100%;
+    }
+
+    .info-about-quizz {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    .info-about-quizz img {
+        width: 100%;
+        height: 255px;
+        margin-bottom: 10px;
+    }
+
+    .info-about-quizz p {
+        text-align: center;
+        font-size: 1em;
+        line-height: 1.25em;
+    }
+}

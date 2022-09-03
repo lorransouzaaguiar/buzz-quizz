@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 :root {
     --white1: #FFFFFF;
     --white2: #FAFAFA;
     --white3: #FFF5F4;
     --red1: #EC362D;
     --red2: #FF0B0B;
+    --red3: #FF4B4B;
     --gray1: #B9B9B9;
     --gray2: #484848;
     --gray3: #818181;
@@ -12,36 +14,40 @@
     --gray5: #BABABA;
     --green1: #009C22;
 }
-*{
+
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
     font-family: 'Roboto', sans-serif;
     background-color: var(--white2);
 }
-.topo{
+
+.topo {
     background-color: var(--red1);
     width: 100%;
     height: 69px;
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
 
 }
-.container{
+
+.container {
     display: flex;
     align-items: center;
     flex-direction: column;
     margin: 0 auto;
     height: 100vh;
-    background-color:var(--white2);
-    
+    background-color: var(--white2);
+
 
 }
-.topo h1{
-        color: var(--white1);
+
+.topo h1 {
+    color: var(--white1);
 }
