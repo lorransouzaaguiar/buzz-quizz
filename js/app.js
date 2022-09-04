@@ -1,5 +1,4 @@
-
-import { BasicQuizzPage } from "./info-basica.js"
+import { QuizzListPage } from "./lista-quizz.js"
 
 export const renderBody = (page) => {
     const main = document.querySelector('#main')
@@ -12,6 +11,6 @@ export const renderBody = (page) => {
 export const userQuizzes = [];
 
 (() => {
-    BasicQuizzPage()
+    QuizzListPage()
 })()
 
