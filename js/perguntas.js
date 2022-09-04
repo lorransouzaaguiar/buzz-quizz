@@ -1,8 +1,14 @@
 import { renderBody } from "./app.js"
-import { abrirNovoNivel, QuizzLevelPage } from "./niveis.js"
+import { QuizzLevelPage } from "./niveis.js"
 import { validations } from "./validations.js"
 
-export const QuizzQuestionPage = (numberOfQuestions, data) => {
+export const QuizzQuestionPage = (numberOfQuestions, basicFormData) => {
+    const questionPage = Page(numberOfQuestions, basicFormData)
+    renderBody(questionPage.render())
+    questionPage.formQuestionQuizz()
+}
+
+const Page = (numberOfQuestions, basicFormData) => {
 
     const render = () => {
         const page = document.createElement('div')
@@ -46,27 +52,107 @@ export const QuizzQuestionPage = (numberOfQuestions, data) => {
         const button = document.querySelector('.botao-prosseguir')
 
         button.onclick = () => {
-            let todosInputsNivelValidos = []
-
             const formQuestions = getQuestionFormValidations()
-            formQuestions.forEach(formQuestion => {
+            const isformQuestionslValid = formQuestions.every((({ isFormValid }) => isFormValid))
 
-                if (!formQuestion.isFormValid) {
-                    alert(`Formulario ${formQuestion.index + 1} válido`)
-
-                    const quizzLevelPage = QuizzLevelPage(data.numeroNiveis, formQuestions)
-                    renderBody(quizzLevelPage.render())
-                    quizzLevelPage.formLevelQuizz()
-                    abrirNovoNivel()
-
-
-                } else {
-                    alert(`Formulario ${formQuestion.index + 1} inválido`)
-                }
+            formQuestions.forEach(({ isFormValid }, index) => {
+                if (!isFormValid)
+                    alert(`Formulario ${index + 1} inválido`)
             })
 
-            todosInputsNivelValidos.length = 0
+            if (isformQuestionslValid) {
+                QuizzLevelPage(basicFormData.numeroNiveis, formQuestions, basicFormData)
+            }
         }
+    }
+
+    const getformQuizzQuestionFromDOM = () => {
+        const formQuizzElements = Object.values(document.querySelectorAll('.criar-pergunta'))
+
+        const getQuizzQuestions = (formQuizzElement) => {
+            const QuestionText = formQuizzElement.children[1].value
+            const BackgroundColor = formQuizzElement.children[2].value
+
+            const CorrectAnswer = formQuizzElement.children[4].value
+            const UrlImage = formQuizzElement.children[5].value
+
+            const Answer1 = formQuizzElement.children[7].value
+            const Answer1UrlImage = formQuizzElement.children[8].value
+
+            const Answer2 = formQuizzElement.children[9].value
+            const Answer2UrlImage = formQuizzElement.children[10].value
+
+            const Answer3 = formQuizzElement.children[11].value
+            const Answer3UrlImage = formQuizzElement.children[12].value
+
+            return {
+                QuestionText,
+                BackgroundColor,
+                CorrectAnswer,
+                UrlImage,
+                Answer1,
+                Answer1UrlImage,
+                Answer2,
+                Answer2UrlImage,
+                Answer3,
+                Answer3UrlImage
+            }
+        }
+
+        const questionForms = formQuizzElements.map(formQuizzElement => getQuizzQuestions(formQuizzElement))
+
+        return { questionForms }
+    }
+
+    const getQuestionFormValidations = () => {
+        const val = validations()
+
+        const { questionForms } = getformQuizzQuestionFromDOM()
+
+        return questionForms.map((form) => {
+            const formValidation = []
+
+            const incorrectAnswer1Text = { text: form.Answer1, image: form.Answer1UrlImage, isCorrectAnswer: false }
+            const incorrectAnswer2Text = { text: form.Answer2, image: form.Answer2UrlImage, isCorrectAnswer: false }
+            const incorrectAnswer3Text = { text: form.Answer3, image: form.Answer3UrlImage, isCorrectAnswer: false }
+
+            const incorrectAnswers = [
+                incorrectAnswer1Text, incorrectAnswer2Text, incorrectAnswer3Text]
+
+            formValidation.push(val.string().isGreaterOrEqualThen(form.QuestionText, 20))
+            formValidation.push(val.string().isHexaDecimalColor(form.BackgroundColor))
+            formValidation.push(!val.string().isEmpty(form.CorrectAnswer))
+            formValidation.push(!val.string().isEmpty(form.UrlImage))
+
+            const incorrectAnswersNotEmpty = incorrectAnswers.filter((incorrectAnswer) =>
+                !val.string().isEmpty(incorrectAnswer.text) &&
+                val.string().isUrlImage(incorrectAnswer.image))
+
+
+            if (incorrectAnswersNotEmpty.length >= 1) {
+                formValidation.push(true)
+            } else {
+                formValidation.push(false)
+            }
+
+            const isFormValid = formValidation.every(response => response)
+            console.log(formValidation)
+            return {
+                isFormValid,
+                form: {
+                    title: form.QuestionText,
+                    color: form.BackgroundColor,
+                    answers: [{
+                        text: form.CorrectAnswer,
+                        image: form.UrlImage,
+                        isCorrectAnswer: true
+                    },
+                    ...incorrectAnswersNotEmpty]
+                }
+            }
+
+        })
+
     }
 
     return { render, formQuestionQuizz }
@@ -74,83 +160,3 @@ export const QuizzQuestionPage = (numberOfQuestions, data) => {
 }
 
 
-const getformQuizzQuestionFromDOM = () => {
-    const formQuizzElements = Object.values(document.querySelectorAll('.criar-pergunta'))
-
-    const getQuizzQuestions = (formQuizzElement) => {
-        const QuestionText = formQuizzElement.children[1].value
-        const BackgroundColor = formQuizzElement.children[2].value
-
-        const CorrectAnswer = formQuizzElement.children[4].value
-        const UrlImage = formQuizzElement.children[5].value
-
-        const Answer1 = formQuizzElement.children[7].value
-        const Answer1UrlImage = formQuizzElement.children[8].value
-
-        const Answer2 = formQuizzElement.children[9].value
-        const Answer2UrlImage = formQuizzElement.children[10].value
-
-        const Answer3 = formQuizzElement.children[11].value
-        const Answer3UrlImage = formQuizzElement.children[12].value
-
-        return {
-            QuestionText,
-            BackgroundColor,
-            CorrectAnswer,
-            UrlImage,
-            Answer1,
-            Answer1UrlImage,
-            Answer2,
-            Answer2UrlImage,
-            Answer3,
-            Answer3UrlImage
-        }
-    }
-
-    const questionForms = formQuizzElements.map(formQuizzElement => getQuizzQuestions(formQuizzElement))
-
-    return { questionForms }
-}
-
-const getQuestionFormValidations = () => {
-    const val = validations()
-
-    const { questionForms } = getformQuizzQuestionFromDOM()
-
-    return questionForms.map((form, index) => {
-        const formValidation = []
-
-        const incorrectAnswer1Text = { answer: form.Answer1, imageUrl: form.Answer1UrlImage }
-        const incorrectAnswer2Text = { answer: form.Answer2, imageUrl: form.Answer2UrlImage }
-        const incorrectAnswer3Text = { answer: form.Answer3, imageUrl: form.Answer3UrlImage }
-
-        const incorrectAnswers = [
-            incorrectAnswer1Text, incorrectAnswer2Text, incorrectAnswer3Text]
-
-        formValidation.push(val.string().isGreaterOrEqualThen(form.QuestionText, 20))
-        formValidation.push(val.string().isHexaDecimalColor(form.BackgroundColor))
-        formValidation.push(!val.string().isEmpty(form.CorrectAnswer))
-        formValidation.push(!val.string().isEmpty(form.UrlImage))
-
-        const incorrectAnswersNotEmpty = incorrectAnswers.filter((incorrectAnswer) =>
-            !val.string().isEmpty(incorrectAnswer.answer) &&
-            val.string().isUrlImage(incorrectAnswer.imageUrl))
-
-
-        if (incorrectAnswersNotEmpty.length >= 1) {
-            formValidation.push(true)
-        } else {
-            formValidation.push(false)
-        }
-
-        const isFormValid = formValidation.every(response => response)
-
-        return {
-            isFormValid,
-            index,
-            form
-        }
-
-    })
-
-}
