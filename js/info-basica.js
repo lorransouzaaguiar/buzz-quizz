@@ -1,7 +1,7 @@
 import { renderBody } from "./app.js"
 import { QuizzQuestionPage } from "./perguntas.js"
 
-export const BasicQuizzPage = () => {
+export const QuizzBasicPage = () => {
     const basicQuizzPage = Page()
     renderBody(basicQuizzPage.render())
     basicQuizzPage.formBasicQuizz()
