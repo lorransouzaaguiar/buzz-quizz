@@ -1,7 +1,8 @@
-import { QuizzApi } from './api.js'
-import { renderBody } from './app.js'
+import { QuizzApi } from '../api/api.js'
+import { renderBody } from '../app.js'
 import { QuizzBasicPage } from './info-basica.js'
-import { storageUserData } from './user-storage.js'
+import { storageUserData } from '../utils/user-storage.js'
+import { QuizzPage } from './quizz.js'
 
 
 export const QuizzListPage = async () => {
@@ -21,27 +22,30 @@ export const QuizzListPage = async () => {
 
         renderBody(quizzListPage.render())
         quizzListPage.createQuizz()
+        quizzListPage.goToQuizzPage()
 
     } catch (e) {
         console.log(e)
+    } finally {
+        console.log('foiii')
     }
 
 
 }
 
 
-const Page = (quizzesData, userQuizzes) => {
+const Page = (quizzesData, userQuizzesData) => {
 
     const render = () => {
         const page = document.createElement('div')
         page.classList.add('container')
         page.classList.add('container-lista-quizz')
 
-        console.log(userQuizzes)
+        console.log(userQuizzesData)
 
 
         page.innerHTML = `
-            ${!userQuizzes?.length ? `
+            ${!userQuizzesData?.length ? `
                 <div class="criaçao-quizz">
                     <p>Você não criou nenhum quizz ainda :(</p>
                     <button onclick="IrTelaCriaçãoDeQuizzes()" class="botao-criar-quizz">Criar Quizz</button>
@@ -53,7 +57,7 @@ const Page = (quizzesData, userQuizzes) => {
                 </div>
                 <div class="caixa-seus-quizzes">
                     <div class="caixa-quizzes">
-                        ${generateQuizzesElement(userQuizzes)}
+                        ${generateQuizzesElement(userQuizzesData)}
                     </div>
                 </div>
             `}
@@ -71,7 +75,7 @@ const Page = (quizzesData, userQuizzes) => {
         let quizzes = ''
         for (let i = 0; i < data.length; i++) {
             const quizz = `
-                <div class="quizz">
+                <div class="quizz" id="${data[i].id}">
                     <h2>${data[i].title}</h2>
                     <img src=${data[i].image}>
                 </div>`
@@ -88,7 +92,22 @@ const Page = (quizzesData, userQuizzes) => {
         }
     }
 
+    const goToQuizzPage = () => {
+        const quizzesElement = Object.values(document.querySelectorAll('.quizz'))
 
-    return { render, createQuizz }
+        quizzesElement.forEach(quizzEl => {
+            quizzEl.onclick = () => {
+                const id = parseInt(quizzEl.getAttribute('id'))
+                const quizz = [...userQuizzesData, ...quizzesData].find(quizz => quizz.id === id)
+                QuizzPage(quizz)
+            }
+        })
+
+        console.log(quizzesElement)
+        console.log(document.getElementById("12371"))
+    }
+
+
+    return { render, createQuizz, goToQuizzPage }
 
 }

@@ -4,7 +4,7 @@ export const QuizzApi = () => {
 
     const getAllQuizzes = async () => {
         const response = await axios.get(URLBASE)
-        /* console.log(response) */
+        console.log(response)
         return response.data
     }
 

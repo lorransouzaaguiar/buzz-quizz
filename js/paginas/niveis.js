@@ -1,7 +1,7 @@
-import { QuizzApi } from "./api.js"
-import { renderBody, userQuizzes } from "./app.js"
+import { QuizzApi } from "../api/api.js"
+import { renderBody } from "../app.js"
 import { SuccessQuizzPage } from "./sucesso.js"
-import { validations } from "./validations.js"
+import { validations } from "../utils/validations.js"
 
 export const QuizzLevelPage = (numberOfLevels, formQuestions, basicFormData) => {
     const quizzLevelPage = Page(numberOfLevels, formQuestions, basicFormData)

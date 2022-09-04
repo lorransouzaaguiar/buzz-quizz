@@ -1,4 +1,4 @@
-import { renderBody } from "./app.js"
+import { renderBody } from "../app.js"
 import { QuizzQuestionPage } from "./perguntas.js"
 
 export const QuizzBasicPage = () => {

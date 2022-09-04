@@ -1,4 +1,4 @@
-import { QuizzListPage } from "./lista-quizz.js"
+import { QuizzListPage } from "./paginas/lista-quizz.js"
 
 export const renderBody = (page) => {
     const main = document.querySelector('#main')

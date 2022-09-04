@@ -1,4 +1,4 @@
-import { renderBody } from "./app.js"
+import { renderBody } from "../app.js"
 import { QuizzBasicPage } from "./info-basica.js"
 
 export const SuccessQuizzPage = (basicFormData) => {

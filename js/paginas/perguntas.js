@@ -1,6 +1,6 @@
-import { renderBody } from "./app.js"
+import { renderBody } from "../app.js"
 import { QuizzLevelPage } from "./niveis.js"
-import { validations } from "./validations.js"
+import { validations } from "../utils/validations.js"
 
 export const QuizzQuestionPage = (numberOfQuestions, basicFormData) => {
     const questionPage = Page(numberOfQuestions, basicFormData)
