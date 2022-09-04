@@ -1,7 +1,6 @@
 
 import { BasicQuizzPage } from "./info-basica.js"
 
-
 export const renderBody = (page) => {
     const main = document.querySelector('#main')
     if (main.children.length >= 1) {
@@ -10,10 +9,9 @@ export const renderBody = (page) => {
     main.appendChild(page)
 }
 
+export const userQuizzes = [];
 
 (() => {
-    const basicQuizzPage = BasicQuizzPage()
-    renderBody(basicQuizzPage.render())
-    basicQuizzPage.formBasicQuizz()
+    BasicQuizzPage()
 })()
 
