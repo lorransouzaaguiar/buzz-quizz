@@ -106,6 +106,7 @@
     font-weight: 700;
     font-size: 1.25em;
     line-height: 1.56em;
+    word-break: break-all;
 }
 
 .quizz-footer {

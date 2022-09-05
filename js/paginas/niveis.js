@@ -23,9 +23,9 @@ const Page = (numberOfLevels, formQuestions, basicFormData) => {
             const nivel = `
                 <div class="novo-nivel" id="novo-nivel">
                     <h3>Nível ${i + 1}</h3>
-                    <img  src="./imagens/Vector.svg">
+                    <img  src="./imagens/Vector.svg" data-identifier="expand">
                 </div> 
-                <div class="criar-nivel escondido" id="criar-nivel" >
+                <div class="criar-nivel escondido" id="criar-nivel" data-identifier="level" >
                     <h3>Nível ${i + 1}</h3>
                     <input placeholder="    Título do nível">  </input>
                     <input placeholder="    % acerto mínimo" id = "acerto-minimo" >  </input>

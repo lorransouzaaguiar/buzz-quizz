@@ -42,9 +42,9 @@ const Page = (quizzData) => {
                 `
 
                 quizz += `
-                    <article class="wrapper-quizz">
+                    <article class="wrapper-quizz" data-identifier="question">
                         <h2 style="${titleStyle}>${question.title}</h2>
-                        <div class="group-image">
+                        <div class="group-image" data-identifier="answer">
                             ${renderAnswers(question.answers)}
                         </div>    
                     </article>`
@@ -137,7 +137,7 @@ const Page = (quizzData) => {
     const renderFinalQuizz = (userLevel, levelData) => {
         return `
             <article class="wrapper-quizz">
-                    <h2 class="result-quizz-title">${userLevel}% de acerto: ${levelData?.title}</h2>
+                    <h2 class="result-quizz-title" data-identifier="quizz-result">${userLevel}% de acerto: ${levelData?.title}</h2>
                     <div class="info-about-quizz">
                         <div>
                             <img src="${levelData?.image}" alt="">

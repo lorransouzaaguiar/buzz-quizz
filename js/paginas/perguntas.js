@@ -19,7 +19,7 @@ const Page = (numberOfQuestions, basicFormData) => {
 
         for (let i = 0; i < numberOfQuestions; i++) {
             const pergunta = `
-                <div class="criar-pergunta">
+                <div class="criar-pergunta" data-identifier="question-form">
                     <h2>Pergunta ${i + 1}</h2>
                     <input placeholder="   Texto da pergunta"> </input>
                     <input placeholder="   Cor do fundo da pergunta"> </input>

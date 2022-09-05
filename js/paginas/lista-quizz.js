@@ -45,14 +45,14 @@ const Page = (quizzesData, userQuizzesData) => {
             ${!userQuizzesData?.length ? `
                 <div class="criaçao-quizz">
                     <p>Você não criou nenhum quizz ainda :(</p>
-                    <button onclick="IrTelaCriaçãoDeQuizzes()" class="botao-criar-quizz">Criar Quizz</button>
+                    <button data-identifier="create-quizz" onclick="IrTelaCriaçãoDeQuizzes()" class="botao-criar-quizz">Criar Quizz</button>
                 </div> `
                 : `
                 <div class="titulo-seus-quizzes">
                     <h2>Seus quizzes</h2>
-                    <ion-icon class="add-icon-button" name="add-circle"></ion-icon>
+                    <ion-icon data-identifier="create-quizz" class="add-icon-button" name="add-circle"></ion-icon>
                 </div>
-                <div class="caixa-seus-quizzes">
+                <div data-identifier="user-quizzes" class="caixa-seus-quizzes">
                     <div class="caixa-quizzes">
                         ${generateQuizzesElement(userQuizzesData)}
                     </div>
@@ -60,7 +60,7 @@ const Page = (quizzesData, userQuizzesData) => {
             `}
             <div class="titulo-todos-quizzes">
                 <h2>Todos os quizzes</h2>
-                <div class="caixa-quizzes">
+                <div class="caixa-quizzes" data-identifier="general-quizzes">
                     ${generateQuizzesElement(quizzesData)}
                 </div>
             </div>`
@@ -72,7 +72,7 @@ const Page = (quizzesData, userQuizzesData) => {
         let quizzes = ''
         for (let i = 0; i < data.length; i++) {
             const quizz = `
-                <div class="quizz" id="${data[i].id}">
+                <div class="quizz" id="${data[i].id}" data-identifier="quizz-card">
                     <h2>${data[i].title}</h2>
                     <img src=${data[i].image}>
                 </div>`
