@@ -52,7 +52,6 @@ const Page = (numberOfLevels, formQuestions, basicFormData) => {
         const levels = formLevels.map(({ form }) => form)
 
         const questions = formQuestions.map(({ form }) => form)
-        console.log(questions)
 
         return createQuizzQuestion(
             basicFormData.titulo, basicFormData.urlImagem, questions, levels)
@@ -78,7 +77,6 @@ const Page = (numberOfLevels, formQuestions, basicFormData) => {
 
                 api.createQuizz(quizz).then(response => {
                     const userQuizzesFromStorage = localStorage.getItem('id')
-                    console.log(userQuizzesFromStorage)
 
                     if (userQuizzesFromStorage) {
                         const userQuizzes = JSON.parse(userQuizzesFromStorage)
@@ -106,22 +104,14 @@ const Page = (numberOfLevels, formQuestions, basicFormData) => {
             const acertoMinimo = inputsNivel.children[2].value
             const urlImagemNivel = inputsNivel.children[3].value
             const descriçaoNivel = inputsNivel.children[4].value
-            const verificarPorcentagem = Object.values(document.querySelectorAll('#acerto-minimo'))
-            const acerto = verificarPorcentagem.filter((input) => input.value == 0)
             const val = validations()
-
-            console.log(inputsNivel)
 
             todosInputsNivelValidos.push(val.string().isGreaterOrEqualThen(tituloNivel, 10))
             todosInputsNivelValidos.push(val.number().isBetweenArangeOf(parseInt(acertoMinimo), 0, 100))
             todosInputsNivelValidos.push(val.string().isUrlImage(urlImagemNivel))
             todosInputsNivelValidos.push(val.string().isGreaterOrEqualThen(descriçaoNivel, 30))
-            //todosInputsNivelValidos.push(val.string().isGreaterOrEqualThen(acerto, 0))
 
             let respostaValidas = todosInputsNivelValidos.every((resposta) => resposta)
-
-            console.log(todosInputsNivelValidos)
-            console.log(respostaValidas)
 
             return {
                 respostaValidas,
@@ -139,15 +129,11 @@ const Page = (numberOfLevels, formQuestions, basicFormData) => {
     function abrirNovoNivel() {
 
         let botaoNovoNivel = Object.values(document.querySelectorAll('.novo-nivel img'))
-        console.log(botaoNovoNivel)
 
         botaoNovoNivel.forEach((botao, index) => {
 
             botao.onclick = () => {
-                console.log(index)
                 let removerEscondido = Object.values(document.querySelectorAll('.escondido'))[index]
-                console.log(removerEscondido)
-
                 removerEscondido.classList.remove('escondido')
 
                 let removerNovoNivel = Object.values(document.querySelectorAll('.novo-nivel'))[index]
@@ -161,56 +147,3 @@ const Page = (numberOfLevels, formQuestions, basicFormData) => {
 
     return { render, formLevelQuizz, abrirNovoNivel }
 }
-
-
-
-
-/* if (tituloNivel.length >= 10) {
-
-       todosInputsNivelValidos.push(true)
-
-   } else {
-       todosInputsNivelValidos.push(false)
-   } */
-
-
-/*  if (parseInt(acertoMinimo) >= 0 && parseInt(acertoMinimo) <= 100) {
-
-     todosInputsNivelValidos.push(true)
-
- } else {
-
-     todosInputsNivelValidos.push(false)
-
- } */
-
-
-/* if (urlImagemNivel.match('https?:\/\/.*\.(?:png|jpg)')) {
-
-    todosInputsNivelValidos.push(true)
-} else {
-
-    todosInputsNivelValidos.push(false)
-
-} */
-
-
-/*  if (descriçaoNivel.length >= 30) {
-
-     todosInputsNivelValidos.push(true)
-
- } else {
-     todosInputsNivelValidos.push(false)
-
- } */
-
-/* if (acerto.length !== 0) {
-
-    console.log('VALIDADO')
-
-} else {
-
-    console.log('deu ruim')
-} */
-
-/*  let respostaValidas = todosInputsNivelValidos.every((resposta) => resposta) */

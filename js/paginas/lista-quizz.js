@@ -9,13 +9,12 @@ export const QuizzListPage = async () => {
     const api = QuizzApi()
     const ids = storageUserData().getIds()
     const userQuizzes = []
-    /*  storageUserData().setId(12825) */
+
     try {
         if (ids) {
             for (let i = 0; i < ids.length; i++) {
                 const userQuizz = await api.getOneQuizz(ids[i])
                 userQuizzes.push(userQuizz)
-                console.log(userQuizz)
             }
         }
 
@@ -28,11 +27,7 @@ export const QuizzListPage = async () => {
 
     } catch (e) {
         console.log(e)
-    } finally {
-        console.log('foiii')
     }
-
-
 }
 
 
@@ -104,9 +99,6 @@ const Page = (quizzesData, userQuizzesData) => {
                 QuizzPage(quizz)
             }
         })
-
-        console.log(quizzesElement)
-        console.log(document.getElementById("12371"))
     }
 
 

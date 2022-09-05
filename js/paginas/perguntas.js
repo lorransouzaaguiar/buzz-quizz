@@ -136,7 +136,7 @@ const Page = (numberOfQuestions, basicFormData) => {
             }
 
             const isFormValid = formValidation.every(response => response)
-            console.log(formValidation)
+
             return {
                 isFormValid,
                 form: {
