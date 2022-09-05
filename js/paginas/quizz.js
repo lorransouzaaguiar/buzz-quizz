@@ -7,6 +7,7 @@ export const QuizzPage = (quizzData) => {
 }
 
 const Page = (quizzData) => {
+    const userAnswers = []
 
     const render = () => {
 
@@ -83,11 +84,12 @@ const Page = (quizzData) => {
                         title.style = `
                             color: var(--green1);
                         `
+                        userAnswers.push('acertou')
                     } else {
                         title.style = `color: var(--red3);`
+                        userAnswers.push('errou')
                     }
 
-                    console.log(id)
                     const otherQuizzes = quizzGroup.filter(el => {
                         const [otherId] = JSON.parse(el.getAttribute('id'))
                         return otherId !== id
@@ -111,12 +113,43 @@ const Page = (quizzData) => {
                     })
 
                     quizz.onclick = null
+
+                    if (quizzData.questions.length === userAnswers.length) {
+                        const correctAnswersTotal = userAnswers.filter(answer => answer === 'acertou').length
+                        const porcetagemDeAcerto = Math.ceil(correctAnswersTotal * 100 / userAnswers.length)
+
+                        const levels = quizzData.levels.map((level) => parseInt(level.minValue)).sort((a, b) => a - b)
+
+                        const userLevel = levels.find((level => level >= porcetagemDeAcerto))
+
+                        const leveldata = quizzData.levels.find(level => level.minValue === userLevel)
+
+                        const quizzResultEl = renderFinalQuizz(userLevel, leveldata)
+
+                        const containerQuizzEl = document.querySelector('.container-quizz')
+                        containerQuizzEl.innerHTML += quizzResultEl
+                    }
                 }
             })
         })
+    }
 
-        /*  const */
-        /*  console.log(answersEl[0]) */
+    const renderFinalQuizz = (userLevel, levelData) => {
+        return `
+            <article class="wrapper-quizz">
+                    <h2 class="quizz-title">${userLevel}% de acerto: ${levelData.title}</h2>
+                    <div class="info-about-quizz">
+                        <div>
+                            <img src="${levelData.image}" alt="">
+                        </div>
+                        <p>${levelData.text}</p>
+                    </div>
+            </article>
+            <footer class="quizz-footer">
+                <button class="acessar-quizz">Reiniciar Quizz</button>
+                <a class="home" href="">Voltar para home</a>
+            </footer>
+        `
     }
 
     return { render, chooseAnswer }
