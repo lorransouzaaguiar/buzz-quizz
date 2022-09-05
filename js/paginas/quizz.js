@@ -123,7 +123,7 @@ const Page = (quizzData) => {
                         const userLevel = levels.find((level => level >= porcetagemDeAcerto))
 
                         const leveldata = quizzData.levels.find(level => level.minValue === userLevel)
-
+                        console.log(leveldata)
                         const quizzResultEl = renderFinalQuizz(userLevel, leveldata)
 
                         const containerQuizzEl = document.querySelector('.container-quizz')
@@ -137,12 +137,12 @@ const Page = (quizzData) => {
     const renderFinalQuizz = (userLevel, levelData) => {
         return `
             <article class="wrapper-quizz">
-                    <h2 class="quizz-title">${userLevel}% de acerto: ${levelData.title}</h2>
+                    <h2 class="result-quizz-title">${userLevel}% de acerto: ${levelData?.title}</h2>
                     <div class="info-about-quizz">
                         <div>
-                            <img src="${levelData.image}" alt="">
+                            <img src="${levelData?.image}" alt="">
                         </div>
-                        <p>${levelData.text}</p>
+                        <p>${levelData?.text}</p>
                     </div>
             </article>
             <footer class="quizz-footer">
