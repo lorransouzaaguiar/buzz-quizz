@@ -1,5 +1,6 @@
 import { renderBody } from "../app.js"
 import { QuizzBasicPage } from "./info-basica.js"
+import { QuizzListPage } from "./lista-quizz.js"
 
 export const SuccessQuizzPage = (basicFormData) => {
     const sucessPage = Page(basicFormData)
@@ -31,7 +32,7 @@ const Page = (basicFormData) => {
         const link = document.querySelector('.home')
         link.onclick = (e) => {
             e.preventDefault()
-            QuizzBasicPage()
+            QuizzListPage()
         }
     }
 

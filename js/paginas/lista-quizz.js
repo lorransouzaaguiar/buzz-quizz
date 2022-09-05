@@ -9,12 +9,14 @@ export const QuizzListPage = async () => {
     const api = QuizzApi()
     const ids = storageUserData().getIds()
     const userQuizzes = []
-
+    /*  storageUserData().setId(12825) */
     try {
-        for (let i = 0; i < ids.length; i++) {
-            const userQuizz = await api.getOneQuizz(ids[i])
-            userQuizzes.push(userQuizz)
-            console.log(userQuizz)
+        if (ids) {
+            for (let i = 0; i < ids.length; i++) {
+                const userQuizz = await api.getOneQuizz(ids[i])
+                userQuizzes.push(userQuizz)
+                console.log(userQuizz)
+            }
         }
 
         const getAllQuizzes = await api.getAllQuizzes()
