@@ -1,13 +1,13 @@
 .college-image {
     width: 100%;
     max-height: 227px;
-    margin-bottom: 42px;
     object-fit: cover;
 }
 
 .quizz-header {
     height: 227px;
     position: relative;
+    margin-bottom: 42px;
 }
 
 .quizz-title {
@@ -28,7 +28,10 @@
     width: 760px;
     height: 100%;
     margin-bottom: 85px;
+    background-color: var(--white2);
 }
+
+
 
 .wrapper-quizz {
     width: 100%;
@@ -37,7 +40,9 @@
     margin-bottom: 46px;
 }
 
-
+.quizz-answer {
+    cursor: pointer;
+}
 
 .wrapper-quizz>h2 {
     display: flex;
@@ -61,7 +66,6 @@
 
 .wrong-quizz-image {
     opacity: 0.3;
-
 }
 
 .group-image {
@@ -70,11 +74,20 @@
     grid-template-columns: 1fr 1fr;
     gap: 10px;
     background-color: var(--white1);
+
+}
+
+.quizz-img-wrapper {
+    max-width: 329px;
+    max-height: 175px;
 }
 
 .group-image img {
-    max-width: 329px;
+    width: 100%;
+    max-height: 175px;
+    object-fit: cover;
 }
+
 
 .group-image h3 {
     font-size: 20px;
